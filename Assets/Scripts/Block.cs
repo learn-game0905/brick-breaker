@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Block : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Block : MonoBehaviour
     // state
     private int _currentHits = 0;
     
+    // 
+    [SerializeField] private List<GameObject> listPotion;
+
     void Start()
     {
         // selects other game object without SCENE binding: programatically via API
@@ -110,6 +114,7 @@ public class Block : MonoBehaviour
         // plays destroyed block sound SFX
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
         Destroy(this.gameObject);
+        Instantiate(listPotion[0]).transform.position = transform.position;
     }
 
     /**
